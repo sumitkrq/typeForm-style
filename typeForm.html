@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> typeform style</title>
+	<link rel="stylesheet" type="text/css" href="milligram.css">
+	<script type="text/javascript" src="jquery.js"></script>
+</head>
+<body>
+<div class="container">
+
+<div class="row">
+	<div class="column">
+		
+<h2 style="text-align: center;">TypeForm style</h2>
+		
+	</div>
+</div>
+
+
+<div class="row">
+
+<div class="column column-20">
+		space here....
+	</div>
+
+
+	<div class="column column-60">
+<form method="post" id="form">
+<ul style="list-style:none;">
+
+<li class="username" style="display: none;">
+<label style="text-align: center;font-size: 4rem;padding: 0;margin: 0;">Username </label><br/> 
+<input type="text" name="name" id="username" autocomplete="off" />
+<span id="error0"></span>
+</li>
+
+
+<li class="password" style="display: none;">
+<label style="text-align: center;font-size: 4rem;padding: 0;margin: 0;">Password </label><br/> 
+<input type="password" name="password" id="password" />
+<span id="" ="error1"></span>
+</li>
+
+<li class="email" style="display: none;">
+<label style="text-align: center;font-size: 4rem;padding: 0;margin: 0;">Email </label><br/> 
+<input type="text" name="email" id="email" autocomplete="off" />
+<span id="error2"></span>
+</li>
+
+
+
+
+<li class="submit" style="margin-left: 25rem;display: none;">
+<input type="submit" value=" Register " id='submit' />
+</li>
+</ul>
+</form>
+
+
+
+
+		
+	</div>
+	<div class="column column-20">
+		space here....
+	</div>
+</div>
+
+
+
+
+	</div>
+	<script type="text/javascript">
+	var userReg = /^[A-Za-z0-9_]{3,20}$/;//to know more about regular expression creation read given RTF file in project.
+
+	var passwordReg =  /^[A-Za-z0-9!@#$%^&*()_]{6,20}$/;
+
+var emailReg = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i ;
+
+
+		$(document).ready(function(){
+			
+			$('ul li').hide().eq(0).show();//"eq" function in jquery define the child element number or position in DOM style.. :)
+
+			$("#username").keyup(function(){// keyup function trigger the keyup event. when user key up the key board buttion --it trigger.. :)
+				var name=$(this).val();
+				if(!userReg.test(name)){
+					$("#error0").show().html("enter valid username without space").css("color","red").css("font-weight","400");
+					$("#username").css("background-color","#fff99c");
+					$(".password").css("display","none");
+					$(".email").css("display","none");
+					$(".submit").css("display","none");
+					
+					
+				}
+				else
+				{
+					$("#error0").hide();
+					$("#username").css("background-color","#c9ff83");
+					$(".password").slideDown("slow","swing");
+				}
+				
+			});
+
+			$("#password").keyup(function(){
+				var pass=$(this).val();
+				if(!passwordReg.test(pass)){
+					$("#error1").show().html("enter password 6 digit min").css("color","red").css("font-weight","400");
+					$("#password").css("background-color","#fff99c");
+					$(".email").css("display","none");
+					$(".submit").css("display","none");
+					
+				}
+				else
+				{
+					$("#error1").hide();
+					$("#password").css("background-color","#c9ff83");
+					$(".email").slideDown("slow","swing");
+				}
+				
+			});
+
+			$("#email").keyup(function(){
+				var mail=$(this).val();
+				if(!emailReg.test(mail)){
+					$("#error2").show().html("enter valid email").css("color","red").css("font-weight","400");
+					$("#email").css("background-color","#fff99c");
+					$(".submit").css("display","none");
+				}
+				else
+				{
+					$("#error2").hide();
+					$("#email").css("background-color","#c9ff83");
+					$(".submit").slideDown("slow","swing");
+				}
+				
+			});
+			$('#submit').click(function(){
+				var email=$("#email").val();
+var username=$("#username").val();
+var password=$("#password").val();
+
+if(emailReg.test(email) && userReg.test(username) && passwordReg.test(password) )
+{
+	
+$("#form").show().html("<h1>Thank you!</h1><br><h3>for registration..!!</h3>").css("text-align","center").css("color","green");
+}
+else
+{
+
+}
+return false;
+
+
+			});
+
+
+		});
+
+
+	</script>
+
+</body>
+</html>
